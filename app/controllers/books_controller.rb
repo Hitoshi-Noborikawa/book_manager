@@ -2,7 +2,11 @@ class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
 
   def index
-    @books = Book.all
+    @books = if params[:q].present?
+      Book.search(params[:q])
+    else
+      Book.all
+    end
   end
 
   def show
@@ -46,6 +50,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.expect(book: [ :title, :author, :publisher, :published_on, :description ])
+    params.require(:book).permit(:title, :author, :publisher, :published_on, :description)
   end
 end
