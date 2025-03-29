@@ -16,7 +16,6 @@
       <th scope="col">著者</th>
       <th scope="col">出版社</th>
       <th scope="col">出版日</th>
-      <th scope="col" colspan="2"></th>
     </tr>
   </thead>
 
@@ -27,7 +26,6 @@
         <td><%= book.author %></td>
         <td><%= book.publisher.present? ? book.publisher : "-" %></td>
         <td><%= book.published_on.present? ? book.published_on.strftime("%Y-%m-%d") : "-" %></td>
-        <td><%= link_to '編集', edit_book_path(book) %></td>
       </tr>
     <% end %>
   </tbody>
