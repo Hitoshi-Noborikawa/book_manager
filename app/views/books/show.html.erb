@@ -4,15 +4,7 @@
   </div>
   <div class="card-body">
     <%= turbo_frame_tag "book-show" do %>
-      <p><strong>著者:</strong> <%= @book.author %></p>
-      <p><strong>出版社:</strong> <%= @book.publisher.present? ? @book.publisher : "指定なし" %></p>
-      <p><strong>出版日:</strong> <%= @book.published_on.present? ? @book.published_on.strftime("%Y-%m-%d") : "指定なし" %></p>
-      <hr>
-      <p><strong>概要:</strong></p>
-      <p><%= @book.description.present? ? @book.description : "概要が提供されていません。" %></p>
-      <div>
-        <%= link_to '編集', edit_book_path(@book), class: "btn btn-outline-primary mt-3" %>
-      </div>
+      <%= render "content", book: @book %>
     <% end %>
   </div>
 </div>

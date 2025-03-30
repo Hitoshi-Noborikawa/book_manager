@@ -30,7 +30,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-      redirect_to book_path(@book), notice: "本の内容を更新しました"
+      flash.now.notice = "本の内容を更新しました"
     else
       render :edit, status: :unprocessable_entity
     end
