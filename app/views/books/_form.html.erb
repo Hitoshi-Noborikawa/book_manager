@@ -21,6 +21,11 @@
   </div>
 
   <div class="mb-3">
+    <%= form.label '表示画像URL', class: 'form-label' %>
+    <%= form.text_field :cover_url, class: 'form-control', required: true, placeholder: "著者名を入力" %>
+  </div>
+
+  <div class="mb-3">
     <%= form.label '出版社', class: 'form-label' %>
     <%= form.text_field :publisher, class: 'form-control', placeholder: "出版社名を入力" %>
   </div>

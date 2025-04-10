@@ -4,6 +4,11 @@
   </div>
   <div class="card-body">
     <p><strong>著者:</strong> <%= @book.author %></p>
+    <% if @book.cover_url.present? %>
+      <div>
+        <img src="<%= @book.cover_url %>" alt="表紙画像" style="height: 200px;">
+      </div>
+    <% end %>
     <p><strong>出版社:</strong> <%= @book.publisher.present? ? @book.publisher : "指定なし" %></p>
     <p><strong>出版日:</strong> <%= @book.published_on.present? ? @book.published_on.strftime("%Y-%m-%d") : "指定なし" %></p>
     <hr>

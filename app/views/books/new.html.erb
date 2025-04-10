@@ -2,6 +2,9 @@
 
 <div class='card'>
   <div class='card-body'>
+    <div class='mb-3'>
+      <%= link_to "本を検索する", search_books_path %>
+    </div>
     <%= render 'form', book: @book %>
   </div>
 </div>

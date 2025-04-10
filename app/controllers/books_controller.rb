@@ -13,7 +13,11 @@ class BooksController < ApplicationController
   end
 
   def new
-    @book = Book.new
+    @book = Book.new(
+      title: params[:title],
+      author: params[:author],
+      cover_url: params[:cover_url]
+    )
   end
 
   def edit
@@ -43,6 +47,13 @@ class BooksController < ApplicationController
     redirect_to books_path, status: :see_other, notice: '本を削除しました'
   end
 
+  def search
+  end
+
+  def search_results
+    @book_info = Book.search_open_library(params[:title])
+  end
+
   private
 
   def set_book
@@ -50,6 +61,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :author, :publisher, :published_on, :description)
+    params.require(:book).permit(:title, :author, :publisher, :published_on, :description, :cover_url)
   end
 end
