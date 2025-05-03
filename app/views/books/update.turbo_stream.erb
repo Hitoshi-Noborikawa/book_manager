@@ -1,0 +1,4 @@
+<%= turbo_stream.replace "book-show" do %>
+  <%= render "books/content", book: @book %>
+<% end %>
+<%= turbo_stream.update "flash", partial: "layouts/flash" %>
