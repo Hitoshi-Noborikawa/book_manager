@@ -8,6 +8,9 @@ gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "jbuilder"
+gem "jsbundling-rails"
+gem "cssbundling-rails"
+
 
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
