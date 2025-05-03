@@ -37,9 +37,12 @@
 
   <div class="d-flex gap-3">
     <%= form.submit '作成する', class: 'btn btn-primary' %>
-    <%= link_to 'キャンセル', books_path, class: 'btn btn-outline-secondary' %>
+    <%= link_to 'キャンセル', book.persisted? ? book_path(book) : books_path, class: 'btn btn-outline-secondary' %>
   </div>
 <% end %>
-<div class="mt-5">
-  <%= button_to '削除', books_path(book), method: :delete, data: { turbo_confirm: '本当に削除しますか？' }, class: 'btn btn-outline-danger' %>
-</div>
+
+<% if book.persisted? %>
+  <div class="mt-5">
+    <%= button_to '削除', book_path(book), method: :delete, data: { turbo_confirm: '本当に削除しますか？', turbo_frame: "_top" }, class: 'btn btn-outline-danger' %>
+  </div>
+<% end %>
