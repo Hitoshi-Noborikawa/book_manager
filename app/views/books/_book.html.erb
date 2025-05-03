@@ -1,27 +1,6 @@
-<div id="<%= dom_id book %>">
-  <p>
-    <strong>Title:</strong>
-    <%= book.title %>
-  </p>
-
-  <p>
-    <strong>Author:</strong>
-    <%= book.author %>
-  </p>
-
-  <p>
-    <strong>Publisher:</strong>
-    <%= book.publisher %>
-  </p>
-
-  <p>
-    <strong>Published on:</strong>
-    <%= book.published_on %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= book.description %>
-  </p>
-
-</div>
+<tr id="<%= dom_id(book) %>">
+  <td><%= link_to book.title, book, class: 'text-decoration-none text-primary' %></td>
+  <td><%= book.author %></td>
+  <td><%= book.publisher.present? ? book.publisher : "-" %></td>
+  <td><%= book.published_on.present? ? book.published_on.strftime("%Y-%m-%d") : "-" %></td>
+</tr>

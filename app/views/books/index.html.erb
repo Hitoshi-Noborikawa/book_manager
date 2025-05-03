@@ -21,12 +21,7 @@
 
   <tbody>
     <% @books.each do |book| %>
-      <tr>
-        <td><%= link_to book.title, book, class: 'text-decoration-none text-primary' %></td>
-        <td><%= book.author %></td>
-        <td><%= book.publisher.present? ? book.publisher : "-" %></td>
-        <td><%= book.published_on.present? ? book.published_on.strftime("%Y-%m-%d") : "-" %></td>
-      </tr>
+      <%= render 'book', book: book %>
     <% end %>
   </tbody>
 </table>
