@@ -4,7 +4,7 @@
 
     <div class="d-flex gap-3">
       <%= f.submit '更新する', class: 'btn btn-primary' %>
-      <%= link_to 'キャンセル', books_path, class: 'btn btn-outline-secondary' %>
+      <%= link_to 'キャンセル', book_path(@book), class: 'btn btn-outline-secondary' %>
     </div>
   <% end %>
   <div class="mt-5">
