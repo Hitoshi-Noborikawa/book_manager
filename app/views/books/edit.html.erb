@@ -1,3 +1,13 @@
 <%= turbo_frame_tag "book-show" do %>
-  <%= render 'form', book: @book %>
+  <%= form_with(model: @book, local: true) do |f| %>
+    <%= render 'fields', f: f, book: @book %>
+
+    <div class="d-flex gap-3">
+      <%= f.submit '更新する', class: 'btn btn-primary' %>
+      <%= link_to 'キャンセル', books_path, class: 'btn btn-outline-secondary' %>
+    </div>
+  <% end %>
+  <div class="mt-5">
+    <%= button_to '削除', book_path(@book), method: :delete, data: { turbo_confirm: '本当に削除しますか？', turbo_frame: "_top" }, class: 'btn btn-outline-danger' %>
+  </div>
 <% end %>

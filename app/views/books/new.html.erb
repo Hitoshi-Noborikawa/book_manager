@@ -2,7 +2,14 @@
 
 <div class='card'>
   <div class='card-body'>
-    <%= render 'form', book: @book %>
+    <%= form_with(model: @book, local: true) do |f| %>
+      <%= render 'fields', f: f, book: @book %>
+
+      <div class="d-flex gap-3">
+        <%= f.submit '作成する', class: 'btn btn-primary' %>
+        <%= link_to 'キャンセル', books_path, class: 'btn btn-outline-secondary' %>
+      </div>
+    <% end %>
   </div>
 </div>
 
