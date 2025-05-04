@@ -25,9 +25,8 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-
     if @book.save
-      redirect_to @book, notice: '本を作成しました'
+      flash.now.notice = "本を作成しました"
     else
       render :new, status: :unprocessable_entity
     end
@@ -35,7 +34,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-      redirect_to @book, notice: '本の内容を更新しました'
+      flash.now.notice = "本の内容を更新しました"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -43,8 +42,7 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy!
-
-    redirect_to books_path, status: :see_other, notice: '本を削除しました'
+    redirect_to books_path, status: :see_other, notice: "本を削除しました"
   end
 
   def search
@@ -61,6 +59,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:title, :author, :publisher, :published_on, :description, :cover_url)
+    params.require(:book).permit(:title, :author, :publisher, :published_on, :description, :cover_url, :review)
   end
 end

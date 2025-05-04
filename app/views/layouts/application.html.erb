@@ -4,53 +4,18 @@
       <title>BookManagerApp</title>
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
-
-      <!-- Bootstrap CSS CDN -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
       <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+      <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
   <body>
-    <!-- ナビゲーションバー -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="<%= root_path %>">書籍管理アプリ</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="ナビゲーションの切り替え">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <%= link_to '書籍一覧', books_path, class: 'nav-link' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '新規登録', new_book_path, class: 'nav-link' %>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <!-- メインコンテンツ -->
+    <%= render 'layouts/topbar' %>
     <div class="container mt-4">
-      <% if notice %>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <%= notice %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="閉じる"></button>
-        </div>
-      <% end %>
-      <% if alert %>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <%= alert %>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="閉じる"></button>
-        </div>
-      <% end %>
-
+      <div id="flash">
+        <%= render 'layouts/flash' %>
+      </div>
       <%= yield %>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>    <!-- Bootstrap JS CDN -->
+    <%= render 'layouts/modal' %>
   </body>
 </html>

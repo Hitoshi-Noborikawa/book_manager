@@ -3,19 +3,42 @@
     <h2><%= @book.title %></h2>
   </div>
   <div class="card-body">
-    <p><strong>著者:</strong> <%= @book.author %></p>
-    <% if @book.cover_url.present? %>
-      <div>
-        <img src="<%= @book.cover_url %>" alt="表紙画像" style="height: 200px;">
+    <ul class="nav nav-tabs" id="bookTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link active"
+          id="details-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#details-pane"
+          type="button"
+          role="tab"
+        >
+          詳細
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="reviews-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#reviews-pane"
+          type="button"
+          role="tab"
+        >
+          レビュー
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content mt-3" id="bookTabContent">
+      <div class="tab-pane p-1 fade show active" id="details-pane" role="tabpanel">
+        <%= turbo_frame_tag "book-show" do %>
+          <%= render "content", book: @book %>
+        <% end %>
       </div>
-    <% end %>
-    <p><strong>出版社:</strong> <%= @book.publisher.present? ? @book.publisher : "指定なし" %></p>
-    <p><strong>出版日:</strong> <%= @book.published_on.present? ? @book.published_on.strftime("%Y-%m-%d") : "指定なし" %></p>
-    <hr>
-    <p><strong>概要:</strong></p>
-    <p><%= @book.description.present? ? @book.description : "概要が提供されていません。" %></p>
-    <div>
-      <%= link_to '編集', edit_book_path(@book), class: "btn btn-outline-primary mt-3" %>
+      <div class="tab-pane p-1 fade" id="reviews-pane" role="tabpanel">
+        <%= render "reviews", book: @book %>
+      </div>
     </div>
   </div>
 </div>
