@@ -22,7 +22,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      redirect_to @book, notice: "本を作成しました"
+      flash.now.notice = "本を作成しました"
     else
       render :new, status: :unprocessable_entity
     end
