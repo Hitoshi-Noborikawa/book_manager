@@ -4,19 +4,39 @@
     <button type="button" class="btn-close" data-action="modal#close"></button>
   </div>
   <div class="modal-body" data-controller="book-search">
-    <form data-action="submit->book-search#search" data-turbo="false">
+    <form
+      data-action="submit->book-search#search"
+      data-turbo="false"
+      class="d-flex align-items-center"
+    >
       <div class="input-group mb-3">
         <input type="text" data-book-search-target="q" class="form-control" placeholder="タイトルで検索">
-        <button class="btn btn-outline-secondary" type="submit">検索</button>
+        <button
+          type="submit"
+          data-book-search-target="button"
+          class="btn btn-outline-secondary d-inline-flex align-items-center"
+        >
+          <span data-action="book-search#disableOnSearch">検索</span>
+          <span
+            data-book-search-target="spinner"
+            class="spinner-border spinner-border-sm text-secondary ms-2 visually-hidden"
+          ></span>
+        </button>
       </div>
     </form>
 
-    <%= turbo_frame_tag "book_search_frame" do %>
-      <p class="text-muted">検索結果が表示されます</p>
-    <% end %>
+    <div
+      data-book-search-target="success"
+      class="text-success mb-2 visually-hidden"
+    >
+      <i class="bi bi-check-circle-fill"></i> 検索に成功しました
+    </div>
 
-    <div data-book-search-target="error" class="text-danger mb-3"></div>
-    
+    <div
+      data-book-search-target="error"
+      class="text-danger mb-2"
+    ></div>
+
     <%= form_with(model: @book, data: { turbo_frame: "modal", action: "turbo:submit-end->modal#close" }) do |f| %>
       <%= render 'fields', f: f, book: @book %>
 
