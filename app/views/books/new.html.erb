@@ -3,7 +3,20 @@
     <h3 class="m-0">書籍登録</h3>
     <button type="button" class="btn-close" data-action="modal#close"></button>
   </div>
-  <div class="modal-body">
+  <div class="modal-body" data-controller="book-search">
+    <form data-action="submit->book-search#search" data-turbo="false">
+      <div class="input-group mb-3">
+        <input type="text" data-book-search-target="q" class="form-control" placeholder="タイトルで検索">
+        <button class="btn btn-outline-secondary" type="submit">検索</button>
+      </div>
+    </form>
+
+    <%= turbo_frame_tag "book_search_frame" do %>
+      <p class="text-muted">検索結果が表示されます</p>
+    <% end %>
+
+    <div data-book-search-target="error" class="text-danger mb-3"></div>
+    
     <%= form_with(model: @book, data: { turbo_frame: "modal", action: "turbo:submit-end->modal#close" }) do |f| %>
       <%= render 'fields', f: f, book: @book %>
 
