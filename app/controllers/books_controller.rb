@@ -13,11 +13,7 @@ class BooksController < ApplicationController
   end
 
   def new
-    @book = Book.new(
-      title: params[:title],
-      author: params[:author],
-      cover_url: params[:cover_url]
-    )
+    @book = Book.new
   end
 
   def edit
