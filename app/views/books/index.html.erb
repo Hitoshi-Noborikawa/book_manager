@@ -11,7 +11,7 @@
               data: { turbo_frame: "modal", action: "modal#open" } %>
 
   <%= form_with url: books_path, method: :get, local: true, class: 'd-flex' do %>
-    <input class="form-control me-2" type="search" name="q" placeholder="タイトルまたは著者名で検索" aria-label="検索" value="<%= params[:q] %>">
+    <input class="form-control me-2" type="search" name="q" placeholder="タイトルまたは著者名で検索" value="<%= params[:q] %>">
     <button class="btn btn-outline-success" style="width: 70px" type="submit">検索</button>
   <% end %>
 </div>
