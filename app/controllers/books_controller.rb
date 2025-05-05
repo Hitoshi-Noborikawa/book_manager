@@ -45,13 +45,6 @@ class BooksController < ApplicationController
     redirect_to books_path, status: :see_other, notice: "本を削除しました"
   end
 
-  def search
-  end
-
-  def search_results
-    @book_info = Book.search_open_library(params[:title])
-  end
-
   private
 
   def set_book
