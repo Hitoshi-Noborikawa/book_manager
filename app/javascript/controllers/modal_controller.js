@@ -9,9 +9,6 @@ export default class extends Controller {
     this.modalEl = document.querySelector(this.selectorValue)
     this.bsModal = new Modal(this.modalEl, { backdrop: 'static' })
     this.element.addEventListener("turbo:frame-load", () => this.open())
-    this.element.addEventListener("turbo:submit-end", (e) => {
-      if (e.detail.success) this.close()
-    })
   }
 
   open() {
