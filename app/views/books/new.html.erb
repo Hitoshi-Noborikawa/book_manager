@@ -1,9 +1,9 @@
 <%= turbo_frame_tag "modal" do %>
   <div class="modal-header align-items-center">
     <h3 class="m-0">書籍登録</h3>
-    <button type="button" class="btn-close" data-action="modal#close"></button>
+    <button type="button" class="btn-close" data-action="modal#close" aria-label="モーダルを閉じる"></button>
   </div>
-  <div class="modal-body" data-controller="book-search">
+  <div id="bookModalDesc" class="modal-body" data-controller="book-search">
     <form
       data-action="submit->book-search#search"
       data-turbo="false"
@@ -42,7 +42,7 @@
 
       <div class="d-flex gap-3">
         <%= f.submit '作成する', class: 'btn btn-primary' %>
-        <button type="button" class="btn btn-outline-secondary" data-action="modal#close">キャンセル</button>
+        <button type="button" class="btn btn-outline-secondary" data-action="modal#close" aria-label="登録をキャンセルする">キャンセル</button>
       </div>
     <% end %>
   </div>

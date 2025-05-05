@@ -1,5 +1,13 @@
 <div data-controller="modal" data-modal-selector-value="#bookModal">
-  <div id="bookModal" class="modal fade">
+  <div
+    id="bookModal"
+    class="modal fade"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="bookModalLabel"
+    aria-describedby="bookModalDesc"
+    tabindex="-1"
+  >
     <div class="modal-dialog">
       <div class="modal-content">
         <%= turbo_frame_tag "modal" do %><% end %>
