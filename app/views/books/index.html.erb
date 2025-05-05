@@ -1,7 +1,14 @@
 <h1 class="mb-4">書籍一覧</h1>
 
 <div class="d-flex justify-content-between mb-3">
-  <%= link_to '新規登録', new_book_path, class: 'btn btn-primary', data: { turbo_frame: "modal", action: "modal#open" } %>
+  <%= link_to '新規登録', new_book_path,
+              class: 'btn btn-primary',
+              role: 'button',
+              aria: {
+                haspopup: 'dialog',
+                controls: 'bookModal'
+              },
+              data: { turbo_frame: "modal", action: "modal#open" } %>
 
   <%= form_with url: books_path, method: :get, local: true, class: 'd-flex' do %>
     <input class="form-control me-2" type="search" name="q" placeholder="タイトルまたは著者名で検索" aria-label="検索" value="<%= params[:q] %>">
