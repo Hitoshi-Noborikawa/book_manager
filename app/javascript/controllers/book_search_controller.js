@@ -24,8 +24,11 @@ export default class extends Controller {
       const doc = json.docs && json.docs[0]
 
       if (doc) {
-        this.titleTarget.value = doc.title || ""
-        this.authorTarget.value = (doc.author_name && doc.author_name[0])
+        const title = doc.title || ""
+        const author = (doc.author_name && doc.author_name[0])
+        this.titleTarget.value = title
+        this.authorTarget.value = author
+        this.successTarget.textContent = `検索に成功しました。タイトル「${title}」、著者「${author}」を設定しました。`
         this.successTarget.classList.remove("visually-hidden")
       } else {
         this.errorTarget.textContent = "該当する書籍が見つかりませんでした"
