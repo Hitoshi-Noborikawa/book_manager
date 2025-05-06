@@ -5,21 +5,34 @@
   </div>
   <div id="bookModalDesc" class="modal-body" data-controller="book-search">
     <form
+      role="search"
+      aria-label="書籍検索"
       data-action="submit->book-search#search"
       data-turbo="false"
       class="d-flex align-items-center"
     >
       <div class="input-group mb-3">
-        <input type="text" data-book-search-target="q" class="form-control" placeholder="タイトルで検索">
+        <input
+          type="text"
+          data-book-search-target="q"
+          id="book-search-input"
+          class="form-control"
+          placeholder="タイトルで検索"
+          aria-label="検索キーワード"
+        >
         <button
           type="submit"
           data-book-search-target="button"
           class="btn btn-outline-secondary d-inline-flex align-items-center"
+          aria-label="検索を実行"
         >
           <span data-action="book-search#disableOnSearch">検索</span>
           <span
             data-book-search-target="spinner"
             class="spinner-border spinner-border-sm text-secondary ms-2 visually-hidden"
+            role="status"
+            aria-live="polite"
+            aria-hidden="true"
           ></span>
         </button>
       </div>
@@ -28,6 +41,9 @@
     <div
       data-book-search-target="success"
       class="text-success mb-2 visually-hidden"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
     >
       <i class="bi bi-check-circle-fill"></i> 検索に成功しました
     </div>
@@ -35,6 +51,9 @@
     <div
       data-book-search-target="error"
       class="text-danger mb-2"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
     ></div>
 
     <%= form_with(model: @book, data: { turbo_frame: "modal", action: "turbo:submit-end->modal#close" }) do |f| %>
@@ -42,7 +61,12 @@
 
       <div class="d-flex gap-3">
         <%= f.submit '作成する', class: 'btn btn-primary' %>
-        <button type="button" class="btn btn-outline-secondary" data-action="modal#close" aria-label="登録をキャンセルする">キャンセル</button>
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-action="modal#close"
+          aria-label="登録をキャンセル"
+        >キャンセル</button>
       </div>
     <% end %>
   </div>
